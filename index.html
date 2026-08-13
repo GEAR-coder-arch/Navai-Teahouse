@@ -1,0 +1,1021 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#2B211B">
+<title>Чайхана Наваи — Электронное меню</title>
+
+<style>
+:root{
+  --page:#3A2A20;
+  --card:#4A3425;
+  --cream:#F4E5C5;
+  --gold:#C8943E;
+  --lightgold:#E8C77A;
+  --dark:#211711;
+  --wine:#7D2F25;
+  --text:#FFF4DC;
+  --muted:#DCC7A2;
+  --shadow:0 16px 36px #150e0a80;
+}
+
+*{box-sizing:border-box}
+
+html{scroll-behavior:smooth}
+
+body{
+  margin:0;
+  color:var(--text);
+  font:15px/1.5 Georgia,"Times New Roman",serif;
+  background:
+    radial-gradient(#c8943e12 1px,transparent 1px),
+    linear-gradient(125deg,#3a2a20,#2b211b 55%,#3a2a20);
+  background-size:22px 22px,auto;
+}
+
+button{font:inherit;cursor:pointer}
+
+.hidden{display:none!important}
+
+.welcome{
+  min-height:100vh;
+  display:grid;
+  place-items:center;
+  padding:24px;
+  background:
+    radial-gradient(circle at 50% 30%,#69472980,transparent 45%),
+    linear-gradient(145deg,#211711,#3a2a20);
+}
+
+.welcome-card{
+  width:min(590px,100%);
+  padding:42px 28px;
+  text-align:center;
+  border:1px solid var(--gold);
+  border-radius:28px;
+  background:#4a3425d9;
+  box-shadow:var(--shadow);
+}
+
+.logo{
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:contain;
+}
+
+.logo-wrap{
+  width:120px;
+  height:120px;
+  margin:0 auto;
+  padding:4px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  border-radius:18px;
+  background:var(--cream);
+  box-shadow:0 0 0 1px var(--gold);
+}
+
+.welcome .logo-wrap{
+  width:min(260px,70vw);
+  height:150px;
+  margin-bottom:18px;
+}
+
+.logo-fallback{
+  color:var(--wine);
+  font-weight:bold;
+  text-align:center;
+}
+
+.welcome h1{
+  margin:8px 0;
+  font-size:clamp(28px,6vw,45px);
+}
+
+.welcome p{
+  margin:4px;
+  color:var(--muted);
+  font-size:18px;
+}
+
+.prompt{
+  margin:28px 0 15px!important;
+  color:var(--lightgold)!important;
+}
+
+.lang-buttons{
+  display:flex;
+  gap:10px;
+  justify-content:center;
+  flex-wrap:wrap;
+}
+
+.btn{
+  padding:10px 16px;
+  border:0;
+  border-radius:9px;
+  color:var(--dark);
+  background:var(--gold);
+  font-weight:bold;
+  transition:.2s;
+}
+
+.btn:hover{
+  background:var(--lightgold);
+  transform:translateY(-2px);
+}
+
+.btn.outline{
+  color:var(--lightgold);
+  background:transparent;
+  border:1px solid var(--gold);
+}
+
+.btn.small{
+  padding:7px 10px;
+  font-size:13px;
+}
+
+.topbar{
+  position:sticky;
+  top:0;
+  z-index:10;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:8px max(16px,calc((100vw - 1200px)/2));
+  background:#211711ed;
+  border-bottom:1px solid #c8943e99;
+  backdrop-filter:blur(9px);
+}
+
+.topbar .logo-wrap{
+  width:62px;
+  height:62px;
+  flex:none;
+}
+
+.brand{
+  min-width:0;
+  flex:1;
+}
+
+.brand strong{
+  display:block;
+  color:var(--lightgold);
+  font-size:18px;
+}
+
+.brand span{
+  color:var(--muted);
+  font-size:12px;
+}
+
+.container{
+  width:min(1200px,calc(100% - 32px));
+  margin:0 auto;
+  padding:34px 0 64px;
+}
+
+.hero{
+  margin-bottom:28px;
+  text-align:center;
+}
+
+.hero h2{
+  margin:0;
+  color:var(--cream);
+  font-size:clamp(28px,5vw,44px);
+}
+
+.hero p{
+  margin:8px;
+  color:var(--muted);
+}
+
+.section-title{
+  margin:18px 0;
+  color:var(--lightgold);
+  text-align:center;
+  font-size:25px;
+}
+
+.section-title:after,
+.site-footer:before{
+  content:"✦ ❖ ✦";
+  display:block;
+  color:var(--lightgold);
+  letter-spacing:10px;
+  font-size:13px;
+}
+
+.category-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+  gap:16px;
+}
+
+.category{
+  min-height:178px;
+  padding:21px;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  justify-content:flex-end;
+  position:relative;
+  overflow:hidden;
+  border:1px solid #c8943e99;
+  border-radius:18px;
+  background:linear-gradient(135deg,#4a3425,#34251c);
+  box-shadow:var(--shadow);
+}
+
+.category:before{
+  content:"❖";
+  position:absolute;
+  right:14px;
+  top:-28px;
+  color:#c8943e22;
+  font-size:108px;
+}
+
+.category h3,
+.category p,
+.category button{
+  position:relative;
+  z-index:1;
+}
+
+.category h3{
+  margin:0 0 5px;
+  font-size:22px;
+}
+
+.category p{
+  margin:0 0 16px;
+  color:var(--muted);
+}
+
+.toolbar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  margin-bottom:24px;
+}
+
+.toolbar h2{
+  margin:0;
+  color:var(--cream);
+  text-align:center;
+  font-size:clamp(25px,5vw,38px);
+}
+
+.menu-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(265px,1fr));
+  gap:18px;
+}
+
+.dish{
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+  border:1px solid #c8943e99;
+  border-radius:18px;
+  background:var(--card);
+  box-shadow:var(--shadow);
+}
+
+.dish-photo,
+.photo-fallback{
+  display:block;
+  width:100%;
+  height:190px;
+  object-fit:cover;
+  background:linear-gradient(135deg,#7d2f25,#c8943e);
+}
+
+.photo-fallback{
+  display:grid;
+  place-items:center;
+  padding:20px;
+  color:var(--cream);
+  text-align:center;
+  font-size:19px;
+  font-weight:bold;
+}
+
+.dish-body{
+  padding:15px;
+}
+
+.dish h3{
+  margin:0 0 8px;
+  color:var(--cream);
+  font-size:20px;
+  line-height:1.18;
+}
+
+.description{
+  margin:0 0 13px;
+  color:var(--muted);
+  font-size:14px;
+}
+
+.info{
+  margin-top:7px;
+  padding-top:9px;
+  border-top:1px solid #c8943e44;
+  font-size:13px;
+}
+
+.info b{
+  color:var(--lightgold);
+}
+
+.nutrition{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:3px;
+  margin:10px 0;
+  color:var(--muted);
+  font-size:12px;
+}
+
+.note{
+  margin:0 0 12px;
+  color:#dcc7a2aa;
+  font-size:10px;
+}
+
+.price{
+  color:var(--lightgold);
+  font-size:21px;
+  font-weight:bold;
+}
+
+.site-footer{
+  margin-top:40px;
+  padding:34px 20px 25px;
+  text-align:center;
+  background:linear-gradient(135deg,#211711,#3a2a20);
+  border-top:1px solid var(--gold);
+  box-shadow:0 -10px 30px #150e0a55;
+}
+
+.footer-brand h2{
+  margin:14px 0 6px;
+  color:var(--lightgold);
+  font-size:25px;
+}
+
+.footer-brand p{
+  margin:0 0 20px;
+  color:var(--muted);
+}
+
+.footer-contacts{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:12px 24px;
+  margin-bottom:22px;
+}
+
+.footer-contacts a{
+  color:var(--cream);
+  text-decoration:none;
+  border-bottom:1px solid transparent;
+  transition:.2s;
+}
+
+.footer-contacts a:hover{
+  color:var(--lightgold);
+  border-bottom-color:var(--lightgold);
+}
+
+.photo-notice{
+  max-width:720px;
+  margin:0 auto;
+  color:#dcc7a2aa;
+  font-size:12px;
+  line-height:1.5;
+}
+
+@media(max-width:600px){
+  .topbar{
+    gap:8px;
+    padding:7px 12px;
+  }
+
+  .brand strong{font-size:15px}
+  .brand span{display:none}
+
+  .container{
+    width:min(100% - 22px,1200px);
+    padding-top:24px;
+  }
+
+  .welcome-card{
+    padding:32px 17px;
+  }
+
+  .menu-grid{
+    grid-template-columns:1fr;
+  }
+
+  .toolbar{
+    align-items:flex-start;
+  }
+
+  .toolbar h2{
+    max-width:60%;
+    font-size:24px;
+  }
+
+  .category-grid{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .category{
+    min-height:150px;
+    padding:15px;
+  }
+
+  .category h3{
+    font-size:18px;
+  }
+
+  .category p{
+    font-size:12px;
+  }
+
+  .footer-contacts{
+    flex-direction:column;
+    gap:10px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<section id="welcome" class="welcome"></section>
+<main id="app" class="hidden"></main>
+
+<script>
+const logo = '95A86B20-67D0-4978-9A89-4407C7985284.png';
+
+const T = {
+  ru:{
+    restaurant:'Чайхана Наваи',
+    welcome:'Добро пожаловать в чайхану Наваи',
+    tagline:'Национальная кухня и гостеприимство',
+    choose:'Выберите язык меню',
+    title:'Меню чайханы Наваи',
+    subtitle:'Традиции дастархана в каждом блюде',
+    open:'Открыть категорию',
+    back:'Назад',
+    home:'На главную',
+    change:'Сменить язык',
+    ingredients:'Состав',
+    weight:'Вес',
+    nutrition:'Пищевая ценность',
+    calories:'Калории',
+    protein:'Белки',
+    fat:'Жиры',
+    carbohydrates:'Углеводы',
+    sugar:'Сахар',
+    approx:'Пищевая ценность является приблизительной и может отличаться в зависимости от размера порции и способа приготовления.',
+    phone:'Телефон',
+    instagram:'Instagram',
+    location:'Местоположение',
+    photoNotice:'Внешний вид блюд на фотографиях может не соответствовать фактической подаче.'
+  },
+
+  kg:{
+    restaurant:'Наваи чайканасы',
+    welcome:'Наваи чайканасына кош келиңиз',
+    tagline:'Улуттук ашкана жана меймандостук',
+    choose:'Меню тилин тандаңыз',
+    title:'Наваи чайканасынын менюсу',
+    subtitle:'Дасторкондун салты ар бир тамакта',
+    open:'Категорияны ачуу',
+    back:'Артка',
+    home:'Башкы бетке',
+    change:'Тилди өзгөртүү',
+    ingredients:'Курамы',
+    weight:'Салмагы',
+    nutrition:'Азыктык баалуулугу',
+    calories:'Калория',
+    protein:'Белоктор',
+    fat:'Майлар',
+    carbohydrates:'Көмүрсуулар',
+    sugar:'Кант',
+    approx:'Азыктык баалуулугу болжолдуу болуп, порциянын өлчөмүнө жана даярдоо ыкмасына жараша айырмаланышы мүмкүн.',
+    phone:'Телефон',
+    instagram:'Instagram',
+    location:'Жайгашкан жери',
+    photoNotice:'Сүрөттөрдөгү тамактардын көрүнүшү чыныгы берилишине дал келбеши мүмкүн.'
+  },
+
+  en:{
+    restaurant:'Navai Teahouse',
+    welcome:'Welcome to Navai Teahouse',
+    tagline:'National cuisine and hospitality',
+    choose:'Choose your menu language',
+    title:'Navai Teahouse Menu',
+    subtitle:'Dastarkhan traditions in every dish',
+    open:'Open category',
+    back:'Back',
+    home:'Home',
+    change:'Change language',
+    ingredients:'Ingredients',
+    weight:'Weight',
+    nutrition:'Nutrition',
+    calories:'Calories',
+    protein:'Protein',
+    fat:'Fat',
+    carbohydrates:'Carbohydrates',
+    sugar:'Sugar',
+    approx:'Nutritional values are approximate and may vary by portion size and preparation method.',
+    phone:'Phone',
+    instagram:'Instagram',
+    location:'Location',
+    photoNotice:'The appearance of the dishes in the photos may not correspond to the actual presentation.'
+  }
+};
+
+/*
+  У КАЖДОГО БЛЮДА СВОЯ СТРОКА image.
+  Меняйте только ссылку после image.
+*/
+
+const menuData = {
+  first:{
+    title:{
+      ru:'Первые блюда',
+      kg:'Биринчи тамактар',
+      en:'First courses'
+    },
+    caption:{
+      ru:'Тёплые супы и домашняя классика',
+      kg:'Жылуу шорполор жана үй тамактары',
+      en:'Warm soups and home-style classics'
+    },
+    items:[
+      {
+        name:{ru:'Шорпо из говядины',kg:'Уй этинен шорпо',en:'Beef Shorpo'},
+        price:280,
+        weight:'350 г',
+        image:'https://img.iamcook.ru/2023/upl/recipes/cat/u-033c4d9fea92aff22acc34fa7f52a9f9.jpg'
+      },
+      {
+        name:{ru:'Шорпо из баранины',kg:'Кой этинен шорпо',en:'Lamb Shorpo'},
+        price:280,
+        weight:'350 г',
+        image:'https://gotovim-doma.ru/images/recipe/f/b5/fb503840f91638cdf9be0df50f683976.jpg'
+      },
+      {
+        name:{ru:'Фрикадельки',kg:'Тефтели',en:'Meatballs soup'},
+        price:300,
+        weight:'350 г',
+        image:'https://menunedeli.ru/wp-content/uploads/2025/02/Frikadelki-v-slivochnom-souse-500%D1%85350.jpg-1000x667.jpg'
+      },
+      {
+        name:{ru:'Ашлян-фу',kg:'Ашлян-фу',en:'Ashlyan-fu'},
+        price:200,
+        weight:'300 г',
+        image:'http://ilovekg.com/images/food/ashlyam-fu.webp'
+      },
+      {
+        name:{ru:'Окрошка',kg:'Окрошка',en:'Okroshka'},
+        price:220,
+        weight:'350 г',
+        image:'https://menunedeli.ru/wp-content/uploads/2015/05/17/okroshka..jpg'
+      },
+      {
+        name:{ru:'Пельмени по-русски',kg:'Орусча чүчпара',en:'Russian dumplings'},
+        price:250,
+        weight:'300 г',
+        image:'https://xn----8sbehgcimb3cfabqj3b.xn--p1ai/upload/iblock/dea/v3at8ke5e5j8b8bp5agd5nfrtgt0pdg5/-Tatyana-Bralnina-Fotobank-Lori-_7_-_3_.jpg'
+      }
+    ]
+  },
+
+  second:{
+    title:{ru:'Вторые блюда',kg:'Экинчи тамактар',en:'Main courses'},
+    caption:{ru:'Сытные блюда национальной кухни',kg:'Улуттук ашкананын тоюмдуу тамактары',en:'Hearty national cuisine'},
+    items:[
+      ['Жидкий лагман','Суюк лагман','Liquid lagman',280,'https://images.gastronom.ru/t5pizB0sF4F7AIFHy6a0zAjQGJIA0uh-zNzmgt7JUS8/pr:recipe-cover-image/g:ce/rs:auto:0:0:0/L2Ntcy9hbGwtaW1hZ2VzLzAzZGUwZjQ3LTNmOWEtNGI4YS1hNGU2LTU1YzA1ZWRmODdiNC5qcGc.webp'],
+      ['Босо лагман','Босо лагман','Boso lagman',280,'https://cdn.nur.kz/images/1200x675/6aaa1f182150de3d.jpeg?version=1'],
+      ['Говяжий курдак','Уй этинен куурдак','Beef kuurdak',450,'https://i.ytimg.com/vi/BzzVLG4NDhM/sddefault.jpg'],
+      ['Манты','Манты','Manti',280,'https://dostavka312.kg/files/lALE5WXhRdAqYHY6j1npzTEPD.jpeg'],
+      ['Жареные манты','Куурулган манты','Fried manti',290,'https://zira.uz/wp-content/uploads/2019/11/zharennye-manty-3.jpg'],
+      ['Жаровня с овощами','Жашылчалуу куурулган тамак','Roast with vegetables',350,'https://static.tildacdn.pro/tild3731-6534-4862-b638-653238613931/IMG_5096.JPG'],
+      ['Жаровня с курицей','Тооктуу куурулган тамак','Chicken roast',330,'https://beer.kg/assets/images/products/209/jarovnya-kurica.png'],
+      ['Бешбармак','Бешбармак','Beshbarmak',380,'https://multivarka-receptik.ru/wp-content/uploads/2022/10/beshbarmak-reczept-klassicheskij.jpg'],
+      ['Котлеты с гарниром','Гарнир менен котлет','Cutlets with garnish',320,'https://svoya.ru/upload/resize_cache/webp/iblock/79b/79bf0140d96187a4361f9fd005cf5f90.webp'],
+      ['Плов','Палоо','Pilaf',380,'https://images.gastronom.ru/vS3eDA6DMddFCsm2Bv0P1yuw1SOCkmLYhYTJo53SwZo/pr:recipe-cover-image/g:ce/rs:auto:0:0:0/L2Ntcy9hbGwtaW1hZ2VzLzU2OTU3OTRkLTZiYmEtNGI1YS05ZWM1LWViZDVkZWE4MGEyNy5qcGc.webp']
+    ]
+  },
+
+  salads:{
+    title:{ru:'Салаты',kg:'Салаттар',en:'Salads'},
+    caption:{ru:'Свежие и яркие вкусы',kg:'Жаңы жана жаркын даамдар',en:'Fresh and vibrant flavours'},
+    items:[
+      ['Салат по-китайски','Кытайча салат','Chinese-style salad',280,'https://static.1000.menu/img/content-v2/57/4b/11861/ogurcy-s-myasom-po-koreiski_1642052522_7_max.jpg'],
+      ['Баклажаны в кисло-сладком соусе','Кычкыл-таттуу соустагы баклажан','Eggplant in sweet-and-sour sauce',300,'https://media.ovkuse.ru/images/recipes/a8e393ba-d373-4665-8b90-6923546b2a4b/a8e393ba-d373-4665-8b90-6923546b2a4b_1200_630.webp'],
+      ['Цезарь','Цезарь','Caesar salad',200,'https://img.iamcook.ru/2024/upl/recipes/zen/u-b407678da66810be60c6a8e246a76ea1.JPG'],
+      ['Свежий салат','Жаңы салат','Fresh salad',200,'https://cdn.smt.bz/uploads/media/photo/2236799/%D1%81%D0%B2%D0%B5%D0%B6%D0%B8%D0%B9.webp'],
+      ['Шакарап','Шакарап','Shakarap',200,'https://www.russianfood.com/dycontent/images_upl/212/big_211997.jpg'],
+      ['Греческий салат','Грек салаты','Greek salad',280,'https://www.shutterstock.com/image-photo/greek-salad-traditional-village-tomato-260nw-2794986375.jpg'],
+      ['Кавказский салат','Кавказ салаты','Caucasian salad',350,'https://static.1000.menu/img/content-v2/7e/f6/92257/salat-kavkazskii_1731207486_1_rljhu92_max.jpg'],
+      ['Салат «Ала-Тоо»','«Ала-Тоо» салаты','Ala-Too salad',350,'https://i.ytimg.com/vi/kMwnSx6anXk/maxresdefault.jpg'],
+      ['Салат «Гнездо»','«Уя» салаты','Nest salad',280,'https://www.russianfood.com/dycontent/images_upl/434/big_433612.jpg'],
+      ['Оливье','Оливье','Olivier salad',230,'https://images.gastronom.ru/sI2Z_hS9qg62A_PIvSNDCqpsBvIKqOpRSYTVehfE9KA/pr:recipe-cover-image/g:ce/rs:auto:0:0:0/L2Ntcy9hbGwtaW1hZ2VzL2QxOTg4MmNjLTU1YjAtNDQ5ZS05Nzc3LTkzNDUzNGYxMzZkMi5qcGc.webp'],
+      ['Фунчоза','Фунчоза','Funchoza',380,'https://static.1000.menu/img/content-v2/d9/6a/33993/salat-funchoza-s-ovoshchami-po-koreiski_1647766652_0_max.jpg']
+    ]
+  },
+
+  sides:{
+    title:{ru:'Гарниры',kg:'Гарнирлер',en:'Side dishes'},
+    caption:{ru:'Идеальное дополнение к блюду',kg:'Тамакка мыкты кошумча',en:'The perfect addition to a meal'},
+    items:[
+      ['Рис','Күрүч','Rice',130,'https://images.gastronom.ru/L2ZX5cot5CYPsXbbFURdWUwWfPl-wwY8q7QkNEO-FOU/pr:article-preview-image/g:ce/rs:auto:586:339:0/L2Ntcy9hbGwtaW1hZ2VzL2NhMDNhZDFkLTE3MzItNDFlNy1hYWVmLWI5OTU1ZjI3ZTIxZS5qcGc.webp'],
+      ['Гречка','Гречка','Buckwheat',130,'https://static.1000.menu/img/content-v2/12/d5/17422/rassypchataya-grechka-na-garnir_1576824423_7_max.jpg'],
+      ['Пюре','Пюре','Mashed potatoes',130,'https://cdn.nur.kz/images/1200x675/01b88c292135a10e.jpeg?version=1'],
+      ['Картошка фри','Фри картошка','French fries',150,'https://menunedeli.ru/wp-content/uploads/2023/10/DSC07975-scaled.jpg']
+    ]
+  },
+
+  cuts:{
+    title:{ru:'Нарезки',kg:'Кесиндилер',en:'Platters'},
+    caption:{ru:'Щедрые закуски для дастархана',kg:'Дасторконго берешен закускалар',en:'Generous starters for the table'},
+    items:[
+      ['Кавказская нарезка','Кавказ кесиндиси','Caucasian platter',350,'https://cdn.smt.bz/uploads/media/photo/5515057/e0f43e390b13a44346fc1ee039988a6e.webp'],
+      ['Русская закуска','Орус закускасы','Russian appetiser',350,'https://han-saray.kz/images/stories/virtuemart/product/1-48.jpg']
+    ]
+  },
+
+  grill:{
+    title:{ru:'Шашлыки',kg:'Шашлыктар',en:'Shashlik'},
+    caption:{ru:'С огня, для большой компании',kg:'Оттон, чоң компания үчүн',en:'From the grill, made for sharing'},
+    items:[
+      ['Рулет, 250 г','Рулет, 250 г','Roll, 250 g',330,'https://gadgetchef.ru/upload/iblock/1d4/kgusa6xfjag0v8ef0zevud621h17i3sg.jpg'],
+      ['Антрекот, 450 г','Антрекот, 450 г','Entrecote, 450 g',480,'https://static.1000.menu/img/content/21694/-antrekot-shashlyk-iz-antrekota_1502130377_1_max.jpg'],
+      ['Баранина мякоть, 250 г','Кой эти, 250 г','Lamb fillet, 250 g',390,'https://grill-bbq.ru/wp-content/uploads/2024/05/shashlyk-iz-baraniny.jpg'],
+      ['Говядина мякоть, 250 г','Уй эти, 250 г','Beef fillet, 250 g',370,'https://shashlik58.ru/wp-content/uploads/2018/10/AA1zQ0OP-scaled.jpg'],
+      ['Особый, 250 г','Өзгөчө, 250 г','Special, 250 g',370,'https://zaedok.ru/wp-content/uploads/2026/03/sikh-kebab-pakistanskiy-322x181.webp'],
+      ['Кебаб, 300 г','Кебаб, 300 г','Kebab, 300 g',290,'https://grill-bbq.ru/wp-content/uploads/2024/01/kebab-iz-kuritsy-800x600-1.jpg'],
+      ['Крылышки, 300 г','Канаттар, 300 г','Wings, 300 g',290,'https://e1.edimdoma.ru/data/recipes/0014/5261/145261-ed4_wide.jpg'],
+      ['Наполеон, 200 г','Наполеон, 200 г','Napoleon, 200 g',330,'https://www.kulina.ru/images/docs/Image/napoleon(2).jpg'],
+      ['Стейк, 500 г','Стейк, 500 г','Steak, 500 g',900,'https://avatars.mds.yandex.net/get-vertis-journal/3911415/3d4437bb-c877-43c6-b5b4-ac29eacc1935.jpeg/1600x1600'],
+      ['Форель, 1000 г','Форель, 1000 г','Trout, 1000 g',1300,'https://blog-food.ru/images/site/recipes/main-dishes/0052-forel/08.jpg']
+    ]
+  },
+
+  sets:{
+    title:{ru:'Сеты на 6 персон',kg:'6 адамга сеттер',en:'Sets for 6'},
+    caption:{ru:'Праздничный стол без хлопот',kg:'Майрамдык дасторкон түйшүксүз',en:'A festive table without the fuss'},
+    items:[
+      ['Ассорти','Ассорти','Assorted set',3000,'https://alasha.kz/wp-content/uploads/2019/10/shashlyki-min.jpg'],
+      ['Пирожок','Пирожок','Pirozhok set',3500,''],
+      ['Шашлык','Шашлык','Shashlik set',2500,'https://dostavka-93.ru/wp-content/uploads/2020/11/18112388_1920.jpg'],
+      ['Бешбармак','Бешбармак','Beshbarmak set',2500,'https://multivarka-receptik.ru/wp-content/uploads/2022/10/beshbarmak-reczept-klassicheskij.jpg'],
+      ['Плов','Палоо','Pilaf set',1500,'https://images.gastronom.ru/vS3eDA6DMddFCsm2Bv0P1yuw1SOCkmLYhYTJo53SwZo/pr:recipe-cover-image/g:ce/rs:auto:0:0:0/L2Ntcy9hbGwtaW1hZ2VzLzU2OTU3OTRkLTZiYmEtNGI1YS05ZWM1LWViZDVkZWE4MGEyNy5qcGc.webp']
+    ]
+  },
+
+  tandoor:{
+    title:{ru:'Тандыр',kg:'Тандыр',en:'Tandoor'},
+    caption:{ru:'Свежая выпечка из тандыра',kg:'Тандырдан жаңы бышырылган нан',en:'Freshly baked from the tandoor'},
+    items:[
+      ['Самсы','Самсы','Samsa',120,'https://www.centralasia-travel.com/uploads/gallery/488/samsa-09.jpg'],
+      ['Боорсок','Боорсок','Boorsok',150,'https://ilovekg.com/images/food/boorsok.webp']
+    ]
+  },
+
+  drinks:{
+    title:{ru:'Напитки',kg:'Суусундуктар',en:'Drinks'},
+    caption:{ru:'Освежающие напитки',kg:'Сергитүүчү суусундуктар',en:'Refreshing drinks'},
+    items:[
+      ['Coca-Cola','Coca-Cola','Coca-Cola',150,'https://www.shutterstock.com/image-photo/lviv-ukraine-february-6-2026-260nw-2725335277.jpg'],
+      ['Fanta','Fanta','Fanta',150,'https://i.pinimg.com/236x/e9/69/f2/e969f298dc5782e5867ec222c793d1ee.jpg'],
+      ['Pepsi','Pepsi','Pepsi',150,'https://i.pinimg.com/474x/30/01/b6/3001b6d40624003458446a06a4506bee.jpg'],
+      ['Nitro','Nitro','Nitro',150,'https://24.kg/files/media/206/206697.jpg'],
+      ['Pico','Pico','Pico',180,'https://www.coca-cola.com/content/dam/onexp/kz/ru/home-images/brands/piko/piko-pulpy.png'],
+      ['J7','J7','J7',200,'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSd64FYbV9EAraUmb4WO7nVW7zw6WP9-E2UOA&s'],
+      ['Садочок','Садочок','Sadochok juice',200,'https://mir-s3-cdn-cf.behance.net/projects/404/12be98248309107.Y3JvcCw5ODEsNzY4LDE5Niww.png'],
+      ['Любимый сок','Сүйүктүү шире','Favourite juice',200,'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRxyrB-ZSNZwgARs7tBhWRyCT7aGMfuDn-TBA&s'],
+      ['Газированная вода','Газдалган суу','Sparkling water',100,'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSw7ruho0TMDtC1GQ2U_8oi_W1bfB_C-_kWhQ&s'],
+      ['Легенда','Легенда','Legenda water',80,'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7Sh0B3F3iTeTTRuyXWqYXeUG6V0sRSwN3Eg&s'],
+      ['Компот','Компот','Compote',150,'https://images.gastronom.ru/mTFTvBNfD_UneeBDbqR3LWHh4GQq6_QImcqj2M0Aqx8/pr:recipe-cover-image/g:ce/rs:auto:0:0:0/L2Ntcy9hbGwtaW1hZ2VzLzczYjJkODJhLWM3NTktNDdmZC04ZmVmLTVlMjhmMzIzOGJjZi5qcGc.webp']
+    ]
+  }
+};
+
+/* Преобразование коротких записей блюд в единый формат */
+Object.values(menuData).forEach(category=>{
+  category.items=category.items.map((item,index)=>{
+    if(Array.isArray(item)){
+      return {
+        id:'dish-'+index,
+        name:{ru:item[0],kg:item[1],en:item[2]},
+        price:item[3],
+        image:item[4],
+        weight:'350 г',
+        description:{
+          ru:'Традиционное блюдо чайханы с насыщенным вкусом.',
+          kg:'Даамдуу жана салттуу чайкана тамагы.',
+          en:'A traditional teahouse dish with a rich taste.'
+        },
+        ingredients:{
+          ru:'Основные продукты, специи и зелень',
+          kg:'Негизги азыктар, татымалдар жана көк чөп',
+          en:'Main ingredients, spices and herbs'
+        },
+        nutrition:{
+          calories:'примерно 280 ккал',
+          protein:'18 г',
+          fat:'15 г',
+          carbohydrates:'20 г'
+        }
+      };
+    }
+
+    return {
+      ...item,
+      id:'dish-'+index,
+      description:{
+        ru:'Традиционное блюдо чайханы с насыщенным вкусом.',
+        kg:'Даамдуу жана салттуу чайкана тамагы.',
+        en:'A traditional teahouse dish with a rich taste.'
+      },
+      ingredients:{
+        ru:'Основные продукты, специи и зелень',
+        kg:'Негизги азыктар, татымалдар жана көк чөп',
+        en:'Main ingredients, spices and herbs'
+      },
+      nutrition:{
+        calories:'примерно 280 ккал',
+        protein:'18 г',
+        fat:'15 г',
+        carbohydrates:'20 г'
+      }
+    };
+  });
+});
+
+let lang=localStorage.getItem('navai-lang')||'ru';
+let currentCategory=null;
+
+const $=selector=>document.querySelector(selector);
+const tr=key=>T[lang][key];
+
+function logoHTML(){
+  return `
+    <span class="logo-wrap">
+      <img
+        class="logo"
+        src="${logo}"
+        alt="${tr('restaurant')}"
+        onerror="this.replaceWith(Object.assign(document.createElement('span'),{
+          className:'logo-fallback',
+          textContent:'Наваи'
+        }))"
+      >
+    </span>
+  `;
+}
+
+function welcome(){
+  const welcomeBlock=$('#welcome');
+
+  welcomeBlock.classList.remove('hidden');
+  $('#app').classList.add('hidden');
+
+  welcomeBlock.innerHTML=`
+    <div class="welcome-card">
+      ${logoHTML()}
+      <h1>${tr('welcome')}</h1>
+      <p>${tr('tagline')}</p>
+      <p class="prompt">${tr('choose')}</p>
+
+      <div class="lang-buttons">
+        <button class="btn" onclick="selectLanguage('ru')">Русский</button>
+        <button class="btn" onclick="selectLanguage('kg')">Кыргызча</button>
+        <button class="btn" onclick="selectLanguage('en')">English</button>
+      </div>
+    </div>
+  `;
+}
+
+function selectLanguage(selectedLanguage){
+  lang=selectedLanguage;
+  localStorage.setItem('navai-lang',lang);
+  document.documentElement.lang=lang;
+  currentCategory=null;
+  renderApp();
+}
+
+function header(){
+  return `
+    <header class="topbar">
+      ${logoHTML()}
+
+      <div class="brand">
+        <strong>${tr('restaurant')}</strong>
+        <span>${tr('tagline')}</span>
+      </div>
+
+      <button class="btn outline small" onclick="welcome()">
+        ${tr('change')}
+      </button>
+    </header>
+  `;
+}
+
+function footer(){
+  return `
+    <footer class="site-footer">
+      <div class="footer-brand">
+        <h2>${tr('restaurant')}</h2>
+        <p>${tr('tagline')}</p>
+      </div>
+
+      <div class="footer-contacts">
+        <a href="tel:+996701010503">
+          ☎ ${tr('phone')}: +996 701 010 503
+        </a>
+
+        <a
+          href="https://www.instagram.com/navayi_o26"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          ◎ ${tr('instagram')}
+        </a>
+
+        <a
+          href="https://2gis.kg/bishkek/geo/70000001113371945"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          ⌖ ${tr('location')}
+        </a>
+      </div>
+
+      <p class="photo-notice">
+        ${tr('photoNotice')}
+      </p>
+    </footer>
+  `;
+}
+
+function renderApp(){
+  $('#welcome').classList.add('hidden');
+
+  const app=$('#app');
+  app.classList.remove('hidden');
+
+  app.innerHTML=`
+    ${header()}
+
+    <div class="container">
+      ${currentCategory ? categoryView(currentCategory) : homeView()}
+    </div>
+
+    ${footer()}
+  `;
+}
+
+function homeView(){
+  return `
+    <section class="hero">
+      <h2>${tr('title')}</h2>
+      <p>${tr('subtitle')}</p>
+    </section>
+
+    <h3 class="section-title">${tr('title')}</h3>
+
+    <div class="category-grid">
+      ${Object.entries(menuData).map(([id,category])=>`
+        <article class="category">
+          <h3>${category.title[lang]}</h3>
+          <p>${category.caption[lang]}</p>
+          <button class="btn small" onclick="openCategory('${id}')">
+            ${tr('open')}
+          </button>
+        </article>
+      `).join('')}
+    </div>
+  `;
+}
+
+function categoryView(id){
+  const category=menuData[id];
+
+  return `
+    <div class="toolbar">
+      <button class="btn outline" onclick="goHome()">
+        ← ${tr('back')}
+      </button>
+
+      <h2>${category.title[lang]}</h2>
+
+      <button class="btn outline small" onclick="goHome()">
+        ${tr('home')}
+      </button>
+    </div>
+
+    <div class="menu-grid">
+      ${category.items.map(item=>dishCard(item)).join('')}
+    </div>
+  `;
+}
+
+function dishCard(item){
+  const nutrition=item.nutrition;
+  const safeName=item.name[lang].replace(/'/g,'');
+
+  return `
+    <article class="dish">
+      <img
+        class="dish-photo"
+        src="${item.image}"
+        alt="${item.name[lang]}"
+        loading="lazy"
+        onerror="this.replaceWith(Object.assign(document.createElement('div'),{
+          className:'photo-fallback',
+          textContent:'${safeName}'
+        }))"
+      >
+
+      <div class="dish-body">
+        <h3>${item.name[lang]}</h3>
+
+        <p class="description">
+          ${item.description[lang]}
+        </p>
+
+        <div class="info">
+          <b>${tr('ingredients')}:</b>
+          ${item.ingredients[lang]}
+        </div>
+
+        <div class="info">
+          <b>${tr('weight')}:</b>
+          ${item.weight}
+        </div>
+
+        <div class="info">
+          <b>${tr('nutrition')}:</b>
+        </div>
+
+        <div class="nutrition">
+          <span>${tr('calories')}: ${nutrition.calories}</span>
+          <span>${tr('protein')}: ${nutrition.protein}</span>
+          <span>${tr('fat')}: ${nutrition.fat}</span>
+          <span>${tr('carbohydrates')}: ${nutrition.carbohydrates}</span>
+        </div>
+
+        <p class="note">
+          ${tr('approx')}
+        </p>
+
+        <div class="price">
+          ${item.price} сом
+        </div>
+      </div>
+    </article>
+  `;
+}
+
+function openCategory(id){
+  currentCategory=id;
+  renderApp();
+  window.scrollTo(0,0);
+}
+
+function goHome(){
+  currentCategory=null;
+  renderApp();
+  window.scrollTo(0,0);
+}
+
+if(localStorage.getItem('navai-lang')){
+  renderApp();
+}else{
+  welcome();
+}
+</script>
+
+</body>
+</html>
