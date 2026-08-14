@@ -501,28 +501,28 @@ const T = {
 
   kg:{
     restaurant:'Наваи чайканасы',
-    welcome:'Наваи чайканасына кош келиңиз',
-    tagline:'Улуттук ашкана жана меймандостук',
+    welcome:'Наваи чайканасына кош келдиңиз',
+    tagline:'Элдик тамак-аш жана меймандостук',
     choose:'Меню тилин тандаңыз',
     title:'Наваи чайканасынын менюсу',
-    subtitle:'Дасторкондун салты ар бир тамакта',
+    subtitle:'Ар бир тамакта дасторкон салты жашайт',
     open:'Категорияны ачуу',
     back:'Артка',
-    home:'Башкы бетке',
+    home:'Башкы бет',
     change:'Тилди өзгөртүү',
     ingredients:'Курамы',
     weight:'Салмагы',
-    nutrition:'Азыктык баалуулугу',
+    nutrition:'Пайдалуу заттар',
     calories:'Калория',
-    protein:'Белоктор',
-    fat:'Майлар',
-    carbohydrates:'Көмүрсуулар',
+    protein:'Белок',
+    fat:'Май',
+    carbohydrates:'Көмүрсулар',
     sugar:'Кант',
-    approx:'Азыктык баалуулугу болжолдуу болуп, порциянын өлчөмүнө жана даярдоо ыкмасына жараша айырмаланышы мүмкүн.',
+    approx:'Пайдалуу заттардын көрсөткүчү болжолдуу болуп, порциянын өлчөмүнө жана даярдоо ыкмасына жараша өзгөрүшү мүмкүн.',
     phone:'Телефон',
     instagram:'Instagram',
     location:'Жайгашкан жери',
-    photoNotice:'Сүрөттөрдөгү тамактардын көрүнүшү чыныгы берилишине дал келбеши мүмкүн.'
+    photoNotice:'Сүрөттөрдөгү тамактардын көрүнүшү чыныгы берилишине толук дал келбеши мүмкүн.'
   },
 
   en:{
@@ -552,184 +552,276 @@ const T = {
   }
 };
 
-/*
-  У КАЖДОГО БЛЮДА СВОЯ СТРОКА image.
-  Меняйте только ссылку после image.
-*/
 
 const menuData = {
-  first:{
-    title:{
-      ru:'Первые блюда',
-      kg:'Биринчи тамактар',
-      en:'First courses'
-    },
-    caption:{
-      ru:'Тёплые супы и домашняя классика',
-      kg:'Жылуу шорполор жана үй тамактары',
-      en:'Warm soups and home-style classics'
-    },
+  salads:{
+    title:{ru:'Салаты',kg:'Салаттар',en:'Salads'},
+    caption:{ru:'Свежие и яркие вкусы',kg:'Жаңы жана жаркын даамдар',en:'Fresh and vibrant flavours'},
     items:[
-      {
-        name:{ru:'Шорпо из говядины',kg:'Уй этинен шорпо',en:'Beef Shorpo'},
-        price:280,
-        weight:'350 г',
-        image:'https://img.iamcook.ru/2023/upl/recipes/cat/u-033c4d9fea92aff22acc34fa7f52a9f9.jpg'
-      },
-      {
-        name:{ru:'Шорпо из баранины',kg:'Кой этинен шорпо',en:'Lamb Shorpo'},
-        price:280,
-        weight:'350 г',
-        image:'https://gotovim-doma.ru/images/recipe/f/b5/fb503840f91638cdf9be0df50f683976.jpg'
-      },
-      {
-        name:{ru:'Фрикадельки',kg:'Тефтели',en:'Meatballs soup'},
-        price:300,
-        weight:'350 г',
-        image:'https://menunedeli.ru/wp-content/uploads/2025/02/Frikadelki-v-slivochnom-souse-500%D1%85350.jpg-1000x667.jpg'
-      },
-      {
-        name:{ru:'Ашлян-фу',kg:'Ашлян-фу',en:'Ashlyan-fu'},
-        price:200,
-        weight:'300 г',
-        image:'http://ilovekg.com/images/food/ashlyam-fu.webp'
-      },
-      {
-        name:{ru:'Окрошка',kg:'Окрошка',en:'Okroshka'},
-        price:220,
-        weight:'350 г',
-        image:'https://menunedeli.ru/wp-content/uploads/2015/05/17/okroshka..jpg'
-      },
-      {
-        name:{ru:'Пельмени по-русски',kg:'Орусча чүчпара',en:'Russian dumplings'},
-        price:250,
-        weight:'300 г',
-        image:'https://xn----8sbehgcimb3cfabqj3b.xn--p1ai/upload/iblock/dea/v3at8ke5e5j8b8bp5agd5nfrtgt0pdg5/-Tatyana-Bralnina-Fotobank-Lori-_7_-_3_.jpg'
-      }
+      ['Салат по-китайски','Кытайча салат','Chinese-style salad',350,'https://img.iamcook.ru/2023/upl/recipes/cat/u-a46d6f274b53624dbe34cb8f092bc935.jpg'],
+      ['Баклажаны в кисло-сладком соусе','Кышкыл-таттуу соустагы баклажан','Eggplant in sweet-and-sour sauce',350,'https://i.ytimg.com/vi/IAmzw-1mwDc/maxresdefault.jpg'],
+      ['Цезарь','Цезарь','Caesar salad',380,'https://images.gastronom.ru/-UHzDgNx-m0MMa6OR0ilz2qP7MB0mKQeGceObc9jpck/pr:recipe-cover-image/g:ce/rs:auto:0:0:0/L2Ntcy9hbGwtaW1hZ2VzLzVhNzFhZGY1LTM3MTYtNDlmMy04NDNlLTAwMTg4MGNiM2E0OS5qcGc.webp'],
+      ['Салат «Гнездо»','«Уя» салаты','Nest salad',350,'https://images.gastronom.ru/tshwvpPiOVoCjAQkn5uEOOwHqZFkdFremX_fZR42kVg/pr:recipe-cover-image/g:ce/rs:auto:0:0:0/L2Ntcy9hbGwtaW1hZ2VzLzg5NjY3ZTAwLTQwODMtNGZjZC1iMTk3LTJkZjUwMTFlMzFmMy5qcGc.webp'],
+      ['Оливье','Оливье','Olivier salad',250,'https://images.gastronom.ru/sI2Z_hS9qg62A_PIvSNDCqpsBvIKqOpRSYTVehfE9KA/pr:recipe-cover-image/g:ce/rs:auto:0:0:0/L2Ntcy9hbGwtaW1hZ2VzL2QxOTg4MmNjLTU1YjAtNDQ5ZS05Nzc3LTkzNDUzNGYxMzZkMi5qcGc.webp'],
+      ['Салат «Нежный»','«Нежный» салаты','Delicate salad',350,'https://img.iamcook.ru/2019/upl/recipes/cat/u839-217bab13d64d0dff090a6a269ad73fcb.JPG'],
+      ['Фунчоза чёрная','Кара фунчоза','Black funchoza',380,'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQp5aAkoBNeA6Fq6lrxDQYM2r3T9EUwiLFubw&s'],
+      ['Греческий салат','Грек салаты','Greek salad',350,'https://hoff.ru/upload/medialibrary/d94/5q86zk61fdvuks4g1ecs5sv3yg5rsh88.jpg'],
+      ['Битые огурцы острые','Ачуу жарылган огурец','Spicy chopped cucumbers',250,'https://zira.uz/wp-content/uploads/2018/07/bitie-ogurci-2.jpg'],
+      ['Фирменный «Наваи»','«Наваи» фирмалык салаты','Signature Navai salad',350,'https://navat.kg/dostavka/files/products/vostochnyj-salat.300x300.jpg'],
+      ['Корейский салат','Корей салаты','Korean salad',350,'https://koreana.rest/upload/%D0%B1%D0%BB%D0%BE%D0%B3-%D0%BA%D0%BE%D1%80%D0%B5%D0%B9%D1%81%D0%BA%D0%B8%D0%B5-%D1%81%D0%B0%D0%BB%D0%B0%D1%82%D1%8B-1.jpg']
+    ]
+  },
+
+  first:{
+    title:{ru:'Первые блюда',kg:'Биринчи тамактар',en:'First courses'},
+    caption:{ru:'Тёплые супы и домашняя классика',kg:'Ысык шорпалар жана үйдүк классика',en:'Warm soups and home-style classics'},
+    items:[
+      ['Шорпо из говядины','Уй этинен шорпо','Beef shorpo',330,'https://img.iamcook.ru/2023/upl/recipes/cat/u-033c4d9fea92aff22acc34fa7f52a9f9.jpg'],
+      ['Шорпо из баранины','Кой этинен шорпо','Lamb shorpo',330,'https://img.iamcook.ru/2023/upl/recipes/cat/u-033c4d9fea92aff22acc34fa7f52a9f9.jpg'],
+      ['Фрикадельки','Фрикадельки','Meatballs',350,'https://e0.edimdoma.ru/data/recipes/0015/3481/153481-ed4_wide.jpg?1759125245'],
+      ['Ашлян-фу','Ашлян-фу','Ashlyan-fu',250,'https://i0.wp.com/www.vsyasol.com/wp-content/uploads/2022/07/17D95B12-A9C2-4590-A2F0-759C77E2EB0D_1_201_a.jpg?resize=630%2C300&ssl=1'],
+      ['Окрошка','Окрошка','Okroshka',220,'https://menunedeli.ru/wp-content/uploads/2015/08/20/Okroshka-na-kefire-s-kolbasoj_opt-4.jpg'],
+      ['Пельмени по-русски','Орусча чүчпара','Russian dumplings',320,'https://images.gastronom.ru/9pM9B7VlZURXxq5xNd6eU1x0TBlxf_BTHkZ4m4SFUrY/pr:recipe-preview-image/g:ce/rs:auto:0:0:0/L2Ntcy9hbGwtaW1hZ2VzLzU4ZTY3ZmVlLWFjMmQtNDIyZi1hNjFiLWE3ZGUxMDI0ODVhYy5qcGc.webp'],
+      ['Долма','Долма','Dolma',350,'https://menunedeli.ru/wp-content/uploads/2022/06/Dolma_svej_listya_17_500x350-1200x800.jpg'],
+      ['Солянка','Солянка','Solyanka',420,'https://images.gastronom.ru/cP3Gi5DTBcNsuoXc9A3NJmnNO-vMKYkQHjFmckaUPqU/pr:article-cover-image/g:ce/rs:auto:0:0:0/L2Ntcy9hbGwtaW1hZ2VzLzliOGNmZTFmLTk1MzMtNGJkMy1iMjYzLWJkNmFlZWFhMDRmMS5qcGc.webp'],
+      ['Жидкий лагман','Суюк лагман','Liquid lagman',350,'https://images.gastronom.ru/t5pizB0sF4F7AIFHy6a0zAjQGJIA0uh-zNzmgt7JUS8/pr:recipe-cover-image/g:ce/rs:auto:0:0:0/L2Ntcy9hbGwtaW1hZ2VzLzAzZGUwZjQ3LTNmOWEtNGI4YS1hNGU2LTU1YzA1ZWRmODdiNC5qcGc.webp'],
+      ['Гуру лагман','Гуру лагман','Guru lagman',350,'https://img.iamcook.ru/2018/upl/recipes/middle/u-be7fa4f2d632b7e8e0e1b4bd326cb8d2.jpg'],
+      ['Острый суп Тамьён','Ачуу Тамьён шорпосу','Spicy tamyen soup',500,'https://images.gastronom.ru/IGo7FFHN6LDlpzG0c0AmcP-RDdwPy-Ci2a5QxcbzdhM/pr:recipe-preview-image/g:ce/rs:auto:0:0:0/L2Ntcy9hbGwtaW1hZ2VzLzRlYmEzOTkyLThhYTctNGQxNC05NWVmLTk1ZDVhNGY1NTY5Ny5qcGc.webp'],
+      ['Мампар','Мампар','Mampar',300,'https://static.1000.menu/img/content-v2/1c/b1/17217/sup-mampar-po-uzbekski_1680589808_19_max.jpg']
     ]
   },
 
   second:{
     title:{ru:'Вторые блюда',kg:'Экинчи тамактар',en:'Main courses'},
-    caption:{ru:'Сытные блюда национальной кухни',kg:'Улуттук ашкананын тоюмдуу тамактары',en:'Hearty national cuisine'},
+    caption:{ru:'Сытные блюда национальной кухни',kg:'Элдик ашкананын тоюттуу тамактары',en:'Hearty national cuisine'},
     items:[
-      ['Жидкий лагман','Суюк лагман','Liquid lagman',280,'https://images.gastronom.ru/t5pizB0sF4F7AIFHy6a0zAjQGJIA0uh-zNzmgt7JUS8/pr:recipe-cover-image/g:ce/rs:auto:0:0:0/L2Ntcy9hbGwtaW1hZ2VzLzAzZGUwZjQ3LTNmOWEtNGI4YS1hNGU2LTU1YzA1ZWRmODdiNC5qcGc.webp'],
-      ['Босо лагман','Босо лагман','Boso lagman',280,'https://cdn.nur.kz/images/1200x675/6aaa1f182150de3d.jpeg?version=1'],
-      ['Говяжий курдак','Уй этинен куурдак','Beef kuurdak',450,'https://i.ytimg.com/vi/BzzVLG4NDhM/sddefault.jpg'],
-      ['Манты','Манты','Manti',280,'https://dostavka312.kg/files/lALE5WXhRdAqYHY6j1npzTEPD.jpeg'],
-      ['Жареные манты','Куурулган манты','Fried manti',290,'https://zira.uz/wp-content/uploads/2019/11/zharennye-manty-3.jpg'],
-      ['Жаровня с овощами','Жашылчалуу куурулган тамак','Roast with vegetables',350,'https://static.tildacdn.pro/tild3731-6534-4862-b638-653238613931/IMG_5096.JPG'],
-      ['Жаровня с курицей','Тооктуу куурулган тамак','Chicken roast',330,'https://beer.kg/assets/images/products/209/jarovnya-kurica.png'],
-      ['Бешбармак','Бешбармак','Beshbarmak',380,'https://multivarka-receptik.ru/wp-content/uploads/2022/10/beshbarmak-reczept-klassicheskij.jpg'],
-      ['Котлеты с гарниром','Гарнир менен котлет','Cutlets with garnish',320,'https://svoya.ru/upload/resize_cache/webp/iblock/79b/79bf0140d96187a4361f9fd005cf5f90.webp'],
-      ['Плов','Палоо','Pilaf',380,'https://images.gastronom.ru/vS3eDA6DMddFCsm2Bv0P1yuw1SOCkmLYhYTJo53SwZo/pr:recipe-cover-image/g:ce/rs:auto:0:0:0/L2Ntcy9hbGwtaW1hZ2VzLzU2OTU3OTRkLTZiYmEtNGI1YS05ZWM1LWViZDVkZWE4MGEyNy5qcGc.webp']
-    ]
-  },
-
-  salads:{
-    title:{ru:'Салаты',kg:'Салаттар',en:'Salads'},
-    caption:{ru:'Свежие и яркие вкусы',kg:'Жаңы жана жаркын даамдар',en:'Fresh and vibrant flavours'},
-    items:[
-      ['Салат по-китайски','Кытайча салат','Chinese-style salad',280,'https://static.1000.menu/img/content-v2/57/4b/11861/ogurcy-s-myasom-po-koreiski_1642052522_7_max.jpg'],
-      ['Баклажаны в кисло-сладком соусе','Кычкыл-таттуу соустагы баклажан','Eggplant in sweet-and-sour sauce',300,'https://media.ovkuse.ru/images/recipes/a8e393ba-d373-4665-8b90-6923546b2a4b/a8e393ba-d373-4665-8b90-6923546b2a4b_1200_630.webp'],
-      ['Цезарь','Цезарь','Caesar salad',200,'https://img.iamcook.ru/2024/upl/recipes/zen/u-b407678da66810be60c6a8e246a76ea1.JPG'],
-      ['Свежий салат','Жаңы салат','Fresh salad',200,'https://cdn.smt.bz/uploads/media/photo/2236799/%D1%81%D0%B2%D0%B5%D0%B6%D0%B8%D0%B9.webp'],
-      ['Шакарап','Шакарап','Shakarap',200,'https://www.russianfood.com/dycontent/images_upl/212/big_211997.jpg'],
-      ['Греческий салат','Грек салаты','Greek salad',280,'https://www.shutterstock.com/image-photo/greek-salad-traditional-village-tomato-260nw-2794986375.jpg'],
-      ['Кавказский салат','Кавказ салаты','Caucasian salad',350,'https://static.1000.menu/img/content-v2/7e/f6/92257/salat-kavkazskii_1731207486_1_rljhu92_max.jpg'],
-      ['Салат «Ала-Тоо»','«Ала-Тоо» салаты','Ala-Too salad',350,'https://i.ytimg.com/vi/kMwnSx6anXk/maxresdefault.jpg'],
-      ['Салат «Гнездо»','«Уя» салаты','Nest salad',280,'https://www.russianfood.com/dycontent/images_upl/434/big_433612.jpg'],
-      ['Оливье','Оливье','Olivier salad',230,'https://images.gastronom.ru/sI2Z_hS9qg62A_PIvSNDCqpsBvIKqOpRSYTVehfE9KA/pr:recipe-cover-image/g:ce/rs:auto:0:0:0/L2Ntcy9hbGwtaW1hZ2VzL2QxOTg4MmNjLTU1YjAtNDQ5ZS05Nzc3LTkzNDUzNGYxMzZkMi5qcGc.webp'],
-      ['Фунчоза','Фунчоза','Funchoza',380,'https://static.1000.menu/img/content-v2/d9/6a/33993/salat-funchoza-s-ovoshchami-po-koreiski_1647766652_0_max.jpg']
+      ['Манты','Манты','Manti',320,'https://images.gastronom.ru/pzwZMEq5UUzPwuGyUTqXHSEoQGhPT9MObJJukc9B_VE/pr:article-cover-image/g:ce/rs:auto:0:0:0/L2Ntcy9hbGwtaW1hZ2VzLzVmYzM4NjYyLTU2MGQtNDBkMC1iMWEzLWExNjgyMDQzYmI3Zi5qcGc.webp'],
+      ['Жареные манты','Куурулган манты','Fried manti',340,'https://cdn.smt.bz/uploads/media/photo/8473415/29ecd8fc55d313e198d926b82e68c776.webp'],
+      ['Гуляш','Гуляш','Goulash',350,'https://static.1000.menu/img/content-v2/83/f8/38705/gulyash-iz-govyadiny-kak-v-detskom-sadu_1648451713_14_max.jpg'],
+      ['Котлеты с гарниром','Гарнир менен котлеталар','Cutlets with garnish',350,'https://taldykorgan.xn--80adkkbwfd.kz/wp-content/uploads/2024/03/kotlety.jpg'],
+      ['Плов','Плов','Pilaf',320,'https://images.gastronom.ru/ZO9exaYXRRPnNhBAJavx9aIk6D4SMrp77yBr1GYKvOo/pr:content-group-cover-image/g:ce/rs:auto:0:0:0/L2Ntcy9hbGwtaW1hZ2VzL2U3ODk0OGExLWE0ZjQtNGRjNS1hZjNiLTQ2MmNhMmY5ODgyNi5qcGc.webp'],
+      ['Фрикасе','Фрикасе','Fricassee',380,'https://img.iamcook.ru/2019/upl/recipes/cat/u-747463809a4e69da1b93a02b3741c9d9.JPG'],
+      ['Бефстроганов','Бефстроганов','Beef Stroganoff',380,'https://www.photorecept.ru/wp-content/uploads/2021/11/befstroganov-s-gribami-i-risom.jpg'],
+      ['Фри с мясом','Эт менен фри','Fries with meat',550,'https://grandkulinar.ru/uploads/posts/2023-01/1673284950_stir-fraj-iz-govyadiny-i-kartofelya-fri.jpg'],
+      ['Курдак','Курдак','Kuurdak',550,'https://sputnik.kg/img/103416/99/1034169924_205:0:934:801_1920x0_80_0_0_a23c20fbdb5281a4abc2c198358ea3a6.jpg'],
+      ['Казан-кебаб','Казан-кебаб','Kazan kebab',600,'https://vkusnoff.com/img/recepty/3883/big.webp'],
+      ['Лангет','Лангет','Langet',500,'https://img.iamcook.ru/old/upl/recipes/cat/u-96f3b9a0e5599093d2dc9db42f4b6822.jpg'],
+      ['Лагман терияки','Терияки лагман','Teriyaki lagman',350,'https://menunedeli.ru/wp-content/uploads/2026/01/Lapsha-udon-s-kuritsei-v-souse-teriyaki-500x3500-1-scaled.jpg'],
+      ['Лагман сливочный','Сливкалык лагман','Creamy lagman',350,'https://static.tildacdn.pro/tild3633-6139-4564-b436-353537316131/MS_M5258-scaled.jpeg'],
+      ['Бешбармак','Бешбармак','Beshbarmak',400,'https://img.iamcook.ru/2025/upl/recipes/cat/u-52cad7268ed77645060900d25872417b.jpg'],
+      ['Жаровня: мясо с овощами','Жаровня: эт менен жашылчалар','Hotpot: meat with vegetables',400,'https://img.iamcook.ru/old/upl/recipes/cat/u1378-59daaaa574b17cfcffcfcf98f61fcc31.jpg'],
+      ['Жаровня с курицей','Тоок менен жаровня','Chicken hotpot',380,'https://apofiz.com/s3-proxy/media/c8182041b382fe37/743fd6db-a741-4554-a323-66e9d5412229-7615f1fe.jpg'],
+      ['Курица в кисло-сладком соусе','Кышкыл-таттуу соустагы тоок','Chicken in sweet-and-sour sauce',380,'https://cdn.lifehacker.ru/wp-content/uploads/2021/04/shutterstock_1223971411_1618904450-scaled.jpg']
     ]
   },
 
   sides:{
     title:{ru:'Гарниры',kg:'Гарнирлер',en:'Side dishes'},
-    caption:{ru:'Идеальное дополнение к блюду',kg:'Тамакка мыкты кошумча',en:'The perfect addition to a meal'},
+    caption:{ru:'Идеальное дополнение к блюду',kg:'Тамакка эң мыкты кошумча',en:'The perfect addition to a meal'},
     items:[
-      ['Рис','Күрүч','Rice',130,'https://images.gastronom.ru/L2ZX5cot5CYPsXbbFURdWUwWfPl-wwY8q7QkNEO-FOU/pr:article-preview-image/g:ce/rs:auto:586:339:0/L2Ntcy9hbGwtaW1hZ2VzL2NhMDNhZDFkLTE3MzItNDFlNy1hYWVmLWI5OTU1ZjI3ZTIxZS5qcGc.webp'],
-      ['Гречка','Гречка','Buckwheat',130,'https://static.1000.menu/img/content-v2/12/d5/17422/rassypchataya-grechka-na-garnir_1576824423_7_max.jpg'],
-      ['Пюре','Пюре','Mashed potatoes',130,'https://cdn.nur.kz/images/1200x675/01b88c292135a10e.jpeg?version=1'],
-      ['Картошка фри','Фри картошка','French fries',150,'https://menunedeli.ru/wp-content/uploads/2023/10/DSC07975-scaled.jpg']
+      ['Рис','Күрүч','Rice',130,'https://images.gastronom.ru/VBRmgARbyem5VgZh1qq8lUJMJMtzMDnl1J46dSeMlSA/pr:article-cover-image/g:ce/rs:auto:0:0:0/L2Ntcy9hbGwtaW1hZ2VzL2U5N2RmMTQ1LWE0MzItNGE1Ny1hM2E2LTc0Y2JiODdjMjI4ZS5qcGc.webp'],
+      ['Гречка','Гречка','Buckwheat',130,'https://img.iamcook.ru/2023/upl/recipes/cat/u-68ffd6d448613ae8f51dea1117f8035c.JPG'],
+      ['Пюре','Пюре','Mashed potatoes',130,'https://img.iamcook.ru/2022/upl/recipes/cat/u-6f813b4917ad03577d056610f5e244f7.JPG'],
+      ['Жареный рис с овощами','Жашылчалар менен куурулган күрүч','Fried rice with vegetables',250,'https://zira.uz/wp-content/uploads/2018/06/ris-s-ovoschami-2.jpg'],
+      ['Картошка фри','Фри картошка','French fries',150,'https://images.gastronom.ru/tSxIVllpUnjyd-TGsDifUgJgVk_vYPB30K9ozaKtN_0/pr:recipe-cover-image/g:ce/rs:auto:0:0:0/L2Ntcy9hbGwtaW1hZ2VzLzBkOGRjYzNlLWY5NDEtNDI5MS05MTM2LTNhN2VkOTA0NmFmMy5qcGc.webp']
     ]
   },
 
   cuts:{
     title:{ru:'Нарезки',kg:'Кесиндилер',en:'Platters'},
-    caption:{ru:'Щедрые закуски для дастархана',kg:'Дасторконго берешен закускалар',en:'Generous starters for the table'},
+    caption:{ru:'Щедрые закуски для дастархана',kg:'Дасторкон үчүн кең пейил закускалар',en:'Generous starters for the table'},
     items:[
-      ['Кавказская нарезка','Кавказ кесиндиси','Caucasian platter',350,'https://cdn.smt.bz/uploads/media/photo/5515057/e0f43e390b13a44346fc1ee039988a6e.webp'],
-      ['Русская закуска','Орус закускасы','Russian appetiser',350,'https://han-saray.kz/images/stories/virtuemart/product/1-48.jpg']
+      ['Кавказская нарезка','Кавказ кесиндиси','Caucasian platter',350,'https://static.tildacdn.pro/stor6531-3261-4432-a632-613938393731/9506f2ebc883f388c660c0c9bd767059.png'],
+      ['Русская закуска','Орус закускасы','Russian appetizer',350,'https://market.vseokoree.com/images/product/1582894065.jpg']
     ]
   },
 
   grill:{
     title:{ru:'Шашлыки',kg:'Шашлыктар',en:'Shashlik'},
-    caption:{ru:'С огня, для большой компании',kg:'Оттон, чоң компания үчүн',en:'From the grill, made for sharing'},
+    caption:{ru:'С огня, для большой компании',kg:'Жанып турган оттон, чоң компания үчүн',en:'From the grill, made for sharing'},
     items:[
-      ['Рулет, 250 г','Рулет, 250 г','Roll, 250 g',330,'https://gadgetchef.ru/upload/iblock/1d4/kgusa6xfjag0v8ef0zevud621h17i3sg.jpg'],
-      ['Антрекот, 450 г','Антрекот, 450 г','Entrecote, 450 g',480,'https://static.1000.menu/img/content/21694/-antrekot-shashlyk-iz-antrekota_1502130377_1_max.jpg'],
-      ['Баранина мякоть, 250 г','Кой эти, 250 г','Lamb fillet, 250 g',390,'https://grill-bbq.ru/wp-content/uploads/2024/05/shashlyk-iz-baraniny.jpg'],
-      ['Говядина мякоть, 250 г','Уй эти, 250 г','Beef fillet, 250 g',370,'https://shashlik58.ru/wp-content/uploads/2018/10/AA1zQ0OP-scaled.jpg'],
-      ['Особый, 250 г','Өзгөчө, 250 г','Special, 250 g',370,'https://zaedok.ru/wp-content/uploads/2026/03/sikh-kebab-pakistanskiy-322x181.webp'],
-      ['Кебаб, 300 г','Кебаб, 300 г','Kebab, 300 g',290,'https://grill-bbq.ru/wp-content/uploads/2024/01/kebab-iz-kuritsy-800x600-1.jpg'],
-      ['Крылышки, 300 г','Канаттар, 300 г','Wings, 300 g',290,'https://e1.edimdoma.ru/data/recipes/0014/5261/145261-ed4_wide.jpg'],
-      ['Наполеон, 200 г','Наполеон, 200 г','Napoleon, 200 g',330,'https://www.kulina.ru/images/docs/Image/napoleon(2).jpg'],
-      ['Стейк, 500 г','Стейк, 500 г','Steak, 500 g',900,'https://avatars.mds.yandex.net/get-vertis-journal/3911415/3d4437bb-c877-43c6-b5b4-ac29eacc1935.jpeg/1600x1600'],
-      ['Форель, 1000 г','Форель, 1000 г','Trout, 1000 g',1300,'https://blog-food.ru/images/site/recipes/main-dishes/0052-forel/08.jpg']
+      ['Баранина мякоть','Койдун этинен','Lamb fillet',430,'https://tandir.house/components/com_jshopping/files/img_products/full_shashlyk-baran.png'],
+      ['Говядина мякоть','Уй этинен','Beef fillet',430,'https://www.kussman.ru/wp-content/uploads/2023/12/wewhbuxmfkin74fndumbjbafc8sae0yb4l6ff5mt-1-scaled.jpg'],
+      ['Кавказская баранина','Кавказ кой эти','Caucasian lamb',750,'https://img.iamcook.ru/2022/upl/recipes/zen/u-8ba88338a11cb7e9b28c03f7b1112a86.JPG'],
+      ['Рулет говядина','Уй этинен рулет','Beef roulade',450,'https://www.man-meat.ru/upload/iblock/7e7/Flank_Steak_Roulette_Comp.jpg'],
+      ['Кебаб ташкентский','Ташкенттик кебаб','Tashkent kebab',350,'https://avatars.mds.yandex.net/get-sprav-products/4078836/2a00000192c42f81627bd3b4c736ca94c40c/M_height'],
+      ['Наполеон','Наполеон','Napoleon',380,'https://vseresepty.ru/upload/recipe_main_img/1742577902056-1-47da005.jpg'],
+      ['Крылышки','Канаттар','Wings',290,'https://object.pscloud.io/cms/cms/Uploads/image_HpVIsa_ZOgqjy.png'],
+      ['Кебаб люля','Люля-кебаб','Lula kebab',290,'https://gipfel.ru/upload/iblock/461/cjd2asc5vr57rffrjymqyvuzzo46bjdx.jpg'],
+      ['Овощной','Жашылчалуу','Vegetable kebab',250,'https://svoe-rodnoe.ru/blog/wp-content/uploads/2026/05/gotovyj-ovoshhnoj-shashlyk-na-shampurah-obzharennye-bak-edited.png'],
+      ['Шампиньоны','Шампиньон','Mushrooms',280,'https://www.povarenok.ru/data/cache/2013apr/06/27/123617_44436-710x550x.jpg']
     ]
   },
 
   sets:{
-    title:{ru:'Сеты на 6 персон',kg:'6 адамга сеттер',en:'Sets for 6'},
-    caption:{ru:'Праздничный стол без хлопот',kg:'Майрамдык дасторкон түйшүксүз',en:'A festive table without the fuss'},
+    title:{ru:'Сеты на 6 персон',kg:'6 киши үчүн сеттер',en:'Sets for 6'},
+    caption:{ru:'Праздничный стол без хлопот',kg:'Майрамдык дасторкон, эч кандай ыңғайсыздыксыз',en:'A festive table without the fuss'},
     items:[
-      ['Ассорти','Ассорти','Assorted set',3000,'https://alasha.kz/wp-content/uploads/2019/10/shashlyki-min.jpg'],
-      ['Пирожок','Пирожок','Pirozhok set',3500,''],
-      ['Шашлык','Шашлык','Shashlik set',2500,'https://dostavka-93.ru/wp-content/uploads/2020/11/18112388_1920.jpg'],
-      ['Бешбармак','Бешбармак','Beshbarmak set',2500,'https://multivarka-receptik.ru/wp-content/uploads/2022/10/beshbarmak-reczept-klassicheskij.jpg'],
-      ['Плов','Палоо','Pilaf set',1500,'https://images.gastronom.ru/vS3eDA6DMddFCsm2Bv0P1yuw1SOCkmLYhYTJo53SwZo/pr:recipe-cover-image/g:ce/rs:auto:0:0:0/L2Ntcy9hbGwtaW1hZ2VzLzU2OTU3OTRkLTZiYmEtNGI1YS05ZWM1LWViZDVkZWE4MGEyNy5qcGc.webp']
+      ['Ассорти','Ассорти','Assorted set',3000,'https://crazybrothers.ru/wp-content/uploads/Assorti-shashlykov-srednee1-ok-700x467.jpg'],
+      ['Пирожок','Пирожок','Pirozhok set',3500,'https://chudobludo.com/c34bcdc4f74ede469529f8e40d18643b.webp'],
+      ['Плов 1 килограмм в готовом виде','Даяр 1 кг плов','Pilaf 1 kg ready-made',1500,'https://zira.uz/wp-content/uploads/2021/02/prazdnichnyi---plov-ai--ran-grohe-2.jpg']
     ]
   },
 
-  tandoor:{
-    title:{ru:'Тандыр',kg:'Тандыр',en:'Tandoor'},
-    caption:{ru:'Свежая выпечка из тандыра',kg:'Тандырдан жаңы бышырылган нан',en:'Freshly baked from the tandoor'},
+  bakery:{
+    title:{ru:'Выпечка',kg:'Нан жана бышактар',en:'Bakery'},
+    caption:{ru:'Домашняя выпечка и свежий хлеб',kg:'Үйдө бышырылган нан жана жаңы бышактар',en:'Fresh homemade bakery'},
     items:[
-      ['Самсы','Самсы','Samsa',120,'https://www.centralasia-travel.com/uploads/gallery/488/samsa-09.jpg'],
-      ['Боорсок','Боорсок','Boorsok',150,'https://ilovekg.com/images/food/boorsok.webp']
+      ['Самсы','Самсы','Samsa',120,'https://img.povar.ru/320w/82/91/c2/f8/tandir_samsa-228367.jpg'],
+      ['Боорсок','Боорсок','Boorsok',150,'https://ilovekg.com/images/food/boorsok.webp'],
+      ['Хлеб домашний','Үйдө бышырылган нан','Homemade bread',50,'https://static.1000.menu/img/content/33841/uzbekskie-lepeshki-v-tandyre_1554887572_1_max.jpg']
     ]
   },
 
   drinks:{
     title:{ru:'Напитки',kg:'Суусундуктар',en:'Drinks'},
-    caption:{ru:'Освежающие напитки',kg:'Сергитүүчү суусундуктар',en:'Refreshing drinks'},
+    caption:{ru:'Освежающие напитки',kg:'Сергиңизчү жана дем берүүчү суусундуктар',en:'Refreshing drinks'},
     items:[
-      ['Coca-Cola','Coca-Cola','Coca-Cola',150,'https://www.shutterstock.com/image-photo/lviv-ukraine-february-6-2026-260nw-2725335277.jpg'],
-      ['Fanta','Fanta','Fanta',150,'https://i.pinimg.com/236x/e9/69/f2/e969f298dc5782e5867ec222c793d1ee.jpg'],
-      ['Pepsi','Pepsi','Pepsi',150,'https://i.pinimg.com/474x/30/01/b6/3001b6d40624003458446a06a4506bee.jpg'],
-      ['Nitro','Nitro','Nitro',150,'https://24.kg/files/media/206/206697.jpg'],
+      ['Coca-Cola','Coca-Cola','Coca-Cola',150,'https://tapcom-live.ams3.cdn.digitaloceanspaces.com/media/apizza/products/coca-cola-Cola.jpg'],
+      ['Fanta','Fanta','Fanta',150,'https://stat.trapeza.ru/images/big/228875.jpg'],
+      ['Pepsi','Pepsi','Pepsi',150,'https://kompas.ge/img/rs:fill:600:600/f:webp/q:80/plain/s3://product-photos/pepsi-gaziani-sasmeli-15-l/pepsi-gaziani-sasmeli-15-l-1.jpg'],
+      ['Nitro','Nitro','Nitro',800,'https://resources.cdn-kaspi.kz/img/m/p/hc5/heb/66865224810526.jpg?format=gallery-large'],
       ['Pico','Pico','Pico',180,'https://www.coca-cola.com/content/dam/onexp/kz/ru/home-images/brands/piko/piko-pulpy.png'],
-      ['J7','J7','J7',200,'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSd64FYbV9EAraUmb4WO7nVW7zw6WP9-E2UOA&s'],
-      ['Садочок','Садочок','Sadochok juice',200,'https://mir-s3-cdn-cf.behance.net/projects/404/12be98248309107.Y3JvcCw5ODEsNzY4LDE5Niww.png'],
+      ['J7','J7','J7',220,'https://dixy.ru/upload/iblock/958/1yjcy9gwsh6fzn7wg5zindbewf34f3ho.webp'],
+      ['Чай','Чай','Tea',50,'https://nicetea.ua/uploads/webpn/uploads/images/articles/20250501_green-tea-benefits-effects-on-blood-pressure-sleep-and-metabolism/2025050101.webp'],
+      ['Садочок','Садочок','Sadochok juice',200,'https://upload.cdn.baselinker.com/products/3006117/23c7176b119a2fb168ee2321c5f0a764.jpg'],
       ['Любимый сок','Сүйүктүү шире','Favourite juice',200,'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRxyrB-ZSNZwgARs7tBhWRyCT7aGMfuDn-TBA&s'],
-      ['Газированная вода','Газдалган суу','Sparkling water',100,'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSw7ruho0TMDtC1GQ2U_8oi_W1bfB_C-_kWhQ&s'],
-      ['Легенда','Легенда','Legenda water',80,'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7Sh0B3F3iTeTTRuyXWqYXeUG6V0sRSwN3Eg&s'],
-      ['Компот','Компот','Compote',150,'https://images.gastronom.ru/mTFTvBNfD_UneeBDbqR3LWHh4GQq6_QImcqj2M0Aqx8/pr:recipe-cover-image/g:ce/rs:auto:0:0:0/L2Ntcy9hbGwtaW1hZ2VzLzczYjJkODJhLWM3NTktNDdmZC04ZmVmLTVlMjhmMzIzOGJjZi5qcGc.webp']
+      ['Газированная вода','Газдалган суу','Sparkling water',80,'https://www.vipservicemarket.ru/upload/medialibrary/b42/1566821115_1t.jpg'],
+      ['Легенда','Легенда','Legenda water',100,'https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRjqHxtQ_5Y0h8wzDfUaJfMsTap9b9ABZcpDyWFIRf-zZbGUdTS'],
+      ['Компот','Компот','Compote',150,'https://www.russianfood.com/dycontent/images_upl/604/big_603553.jpg']
     ]
   }
 };
+const categoryMeta = {
+  salads:{
+    ingredients:{
+      ru:'свежие овощи, зелень, специи, соус или маринад',
+      kg:'жаңы жашылчалар, көк чөп, татымалдар, соус же маринад',
+      en:'fresh vegetables, herbs, spices and dressing'
+    },
+    nutrition:{
+      calories:'220–420 ккал',
+      protein:'8–18 г',
+      fat:'10–22 г',
+      carbohydrates:'12–25 г'
+    }
+  },
+  first:{
+    ingredients:{
+      ru:'мясо, овощи, бульон, лук, специи, зелень',
+      kg:'эт, жашылчалар, буфлон, пияз, татымалдар, көк чөп',
+      en:'meat, vegetables, broth, onion, spices and herbs'
+    },
+    nutrition:{
+      calories:'220–500 ккал',
+      protein:'16–30 г',
+      fat:'10–28 г',
+      carbohydrates:'8–18 г'
+    }
+  },
+  second:{
+    ingredients:{
+      ru:'мясо, овощи, масло, лук, специи, гарнир',
+      kg:'эт, жашылчалар, май, пияз, татымалдар, гарнир',
+      en:'meat, vegetables, butter, onion, spices and garnish'
+    },
+    nutrition:{
+      calories:'320–600 ккал',
+      protein:'18–35 г',
+      fat:'15–40 г',
+      carbohydrates:'15–35 г'
+    }
+  },
+  sides:{
+    ingredients:{
+      ru:'рис, гречка, картофель, овощи, масло, зелень',
+      kg:'күрүч, гречка, картоп, жашылчалар, май, көк чөп',
+      en:'rice, buckwheat, potato, vegetables, butter and herbs'
+    },
+    nutrition:{
+      calories:'130–250 ккал',
+      protein:'3–10 г',
+      fat:'5–18 г',
+      carbohydrates:'15–35 г'
+    }
+  },
+  cuts:{
+    ingredients:{
+      ru:'мясные деликатесы, сыры, овощи, зелень, соусы',
+      kg:'эт майдалык, сыр, жашылчалар, көк чөп, соус',
+      en:'meat delicacies, cheese, vegetables, herbs and sauces'
+    },
+    nutrition:{
+      calories:'300–420 ккал',
+      protein:'15–24 г',
+      fat:'18–30 г',
+      carbohydrates:'10–20 г'
+    }
+  },
+  grill:{
+    ingredients:{
+      ru:'мясо, специи, лук, зелень, маринад',
+      kg:'эт, татымалдар, пияз, көк чөп, маринад',
+      en:'meat, spices, onion, herbs and marinade'
+    },
+    nutrition:{
+      calories:'250–750 ккал',
+      protein:'18–50 г',
+      fat:'15–55 г',
+      carbohydrates:'5–18 г'
+    }
+  },
+  sets:{
+    ingredients:{
+      ru:'ассорти блюд, мясо, плов, закуски, соусы',
+      kg:'ассорти тамактар, эт, плов, закуска, соус',
+      en:'assorted dishes, meat, pilaf, snacks and sauces'
+    },
+    nutrition:{
+      calories:'1500–3500 ккал',
+      protein:'90–180 г',
+      fat:'60–220 г',
+      carbohydrates:'100–260 г'
+    }
+  },
+  bakery:{
+    ingredients:{
+      ru:'тесто, мясо, картофель, лук, масло, дрожжи',
+      kg:'камыр, эт, картоп, пияз, май, мая',
+      en:'dough, meat, potato, onion, butter and yeast'
+    },
+    nutrition:{
+      calories:'50–180 ккал',
+      protein:'4–16 г',
+      fat:'2–18 г',
+      carbohydrates:'8–25 г'
+    }
+  },
+  drinks:{
+    ingredients:{
+      ru:'вода, сахар, ароматизаторы, фруктовый сок, чай',
+      kg:'суусундуктар, шекер, хош иис, шыре, чай',
+      en:'water, sugar, flavourings, fruit juice, tea'
+    },
+    nutrition:{
+      calories:'50–800 ккал',
+      protein:'0–1 г',
+      fat:'0–1 г',
+      carbohydrates:'10–60 г'
+    }
+  }
+};
 
-/* Преобразование коротких записей блюд в единый формат */
-Object.values(menuData).forEach(category=>{
+Object.entries(menuData).forEach(([categoryKey, category])=>{
   category.items=category.items.map((item,index)=>{
+    const meta = categoryMeta[categoryKey] || categoryMeta.second;
+
     if(Array.isArray(item)){
       return {
         id:'dish-'+index,
         name:{ru:item[0],kg:item[1],en:item[2]},
         price:item[3],
-        image:item[4],
+        image:item[4] || '',
         weight:'350 г',
         description:{
           ru:'Традиционное блюдо чайханы с насыщенным вкусом.',
@@ -737,15 +829,15 @@ Object.values(menuData).forEach(category=>{
           en:'A traditional teahouse dish with a rich taste.'
         },
         ingredients:{
-          ru:'Основные продукты, специи и зелень',
-          kg:'Негизги азыктар, татымалдар жана көк чөп',
-          en:'Main ingredients, spices and herbs'
+          ru:meta.ingredients.ru,
+          kg:meta.ingredients.kg,
+          en:meta.ingredients.en
         },
         nutrition:{
-          calories:'примерно 280 ккал',
-          protein:'18 г',
-          fat:'15 г',
-          carbohydrates:'20 г'
+          calories:meta.nutrition.calories,
+          protein:meta.nutrition.protein,
+          fat:meta.nutrition.fat,
+          carbohydrates:meta.nutrition.carbohydrates
         }
       };
     }
@@ -753,21 +845,23 @@ Object.values(menuData).forEach(category=>{
     return {
       ...item,
       id:'dish-'+index,
+      image:item.image || '',
+      weight:item.weight || '350 г',
       description:{
         ru:'Традиционное блюдо чайханы с насыщенным вкусом.',
         kg:'Даамдуу жана салттуу чайкана тамагы.',
         en:'A traditional teahouse dish with a rich taste.'
       },
       ingredients:{
-        ru:'Основные продукты, специи и зелень',
-        kg:'Негизги азыктар, татымалдар жана көк чөп',
-        en:'Main ingredients, spices and herbs'
+        ru:item.ingredients?.ru || meta.ingredients.ru,
+        kg:item.ingredients?.kg || meta.ingredients.kg,
+        en:item.ingredients?.en || meta.ingredients.en
       },
       nutrition:{
-        calories:'примерно 280 ккал',
-        protein:'18 г',
-        fat:'15 г',
-        carbohydrates:'20 г'
+        calories:item.nutrition?.calories || meta.nutrition.calories,
+        protein:item.nutrition?.protein || meta.nutrition.protein,
+        fat:item.nutrition?.fat || meta.nutrition.fat,
+        carbohydrates:item.nutrition?.carbohydrates || meta.nutrition.carbohydrates
       }
     };
   });
